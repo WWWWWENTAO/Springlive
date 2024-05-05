@@ -32,4 +32,14 @@ public class HomeController {
         return user;
     }
 
+    @GetMapping("/userparams")
+    public User userbyRequestParams(@RequestParam String id,
+                                    @RequestParam String name,
+                                    @RequestParam(required = false, defaultValue = "info@nv.net") String email) {
+        User user = new User();
+        user.setId(id);
+        user.setName(name);
+        user.setEmail(email);
+        return user;
+    }
 }

@@ -1,8 +1,14 @@
 package net.nvsoftware.springmono.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Product {
+
+    @JsonIgnore
     private String productId;
+
     private String title;
+
     private String description;
 
     public String getProductId() {

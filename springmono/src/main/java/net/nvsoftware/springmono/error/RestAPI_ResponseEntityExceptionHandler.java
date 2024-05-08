@@ -22,4 +22,13 @@ public class RestAPI_ResponseEntityExceptionHandler extends ResponseEntityExcept
         return errorMsg;
     }
 
+    @ExceptionHandler(Exception.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+
+    public ErrorMsg GenericException (Exception e) {
+        ErrorMsg errorMsg = new ErrorMsg(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+        return errorMsg;
+    }
+
 }

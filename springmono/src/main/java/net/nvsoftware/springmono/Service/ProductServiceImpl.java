@@ -21,7 +21,7 @@ public class ProductServiceImpl implements ProductService {
         return product;
     }
 
-    @Override
+//    @Override
     public List<Product> getAll() {
         return productList;
     }
@@ -35,6 +35,6 @@ public class ProductServiceImpl implements ProductService {
     public String deleteById(String id) {
         Product product = productList.stream().filter(e -> e.getProductId().equals(id)).findFirst().get();
         productList.remove(product);
-        return "Deleted Product with Id:" + id;
+        return "Deleted Product with Id:" + id + " successfully";
     }
 }

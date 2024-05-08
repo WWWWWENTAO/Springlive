@@ -1,5 +1,6 @@
 package net.nvsoftware.springmono.Service;
 
+import net.nvsoftware.springmono.error.ProductNotFoundException;
 import net.nvsoftware.springmono.model.Product;
 import org.springframework.stereotype.Service;
 
@@ -28,12 +29,18 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getById(String id) {
-        return productList.stream().filter(product -> product.getProductId().equals(id)).findFirst().get();
+        return productList.stream().filter(product -> product.getProductId().equals(id))
+                .findFirst()
+                //.orElseThrow(() -> new RuntimeException("Product not found with id " + id));
+                .orElseThrow(() -> new ProductNotFoundException("Product not found with id " + id));
+
     }
 
     @Override
     public String deleteById(String id) {
-        Product product = productList.stream().filter(e -> e.getProductId().equals(id)).findFirst().get();
+        Product product = productList.stream().filter(e -> e.getProductId().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
         productList.remove(product);
         return "Deleted Product with Id:" + id + " successfully";
     }

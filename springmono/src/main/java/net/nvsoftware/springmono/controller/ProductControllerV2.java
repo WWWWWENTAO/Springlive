@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/product")
-public class ProductController {
-    @Qualifier("productServiceImpl")
+@RequestMapping("/v2/poduct")
+
+public class ProductControllerV2 {
+    @Qualifier("productServiceImplV2")
     @Autowired
     private ProductService productService;
 
@@ -35,6 +36,4 @@ public class ProductController {
     public String deleteById(@PathVariable String id) {
         return productService.deleteById(id);
     }
-
-
 }

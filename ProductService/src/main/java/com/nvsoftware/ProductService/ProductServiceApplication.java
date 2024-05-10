@@ -1,4 +1,4 @@
-package net.nvsoftware.ProductService;
+package com.nvsoftware.ProductService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

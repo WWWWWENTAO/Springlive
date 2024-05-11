@@ -22,7 +22,7 @@ public class ProductController {
     @GetMapping("/{id}")
     public ResponseEntity<ProductResponse> getProductResponseById (@PathVariable long id) {
         ProductResponse productResponse = productService.getById(id);
-        return new ResponseEntity<>(productResponse, HttpStatus.OK);
+        return new ResponseEntity<>(productResponse, HttpStatus.OK); // HTTP 200
     }
 
 }

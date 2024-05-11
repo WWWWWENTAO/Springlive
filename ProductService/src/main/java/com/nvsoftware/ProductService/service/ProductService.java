@@ -1,5 +1,7 @@
 package com.nvsoftware.ProductService.service;
 
-public interface ProductService {
+import com.nvsoftware.ProductService.model.ProductRequest;
 
+public interface ProductService {
+    long addProduct(ProductRequest productRequest);
 }

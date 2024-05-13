@@ -21,4 +21,21 @@ public class OrderResponse {
     private Instant orderDate;
 
     private String orderStatus;
+
+    private ProductResponse productResponse;
+
+    @Data // auto generate getter and setter
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Builder // predefine some implementations
+
+    public static class ProductResponse {
+        private long id;
+        private String name;
+        private long price;
+        private long quantity;
+    }
+
+
+
 }

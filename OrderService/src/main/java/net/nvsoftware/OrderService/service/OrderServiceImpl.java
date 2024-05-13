@@ -12,7 +12,9 @@ import net.nvsoftware.OrderService.model.PaymentRequest;
 import net.nvsoftware.OrderService.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
 import java.time.Instant;
 
 @Service
@@ -27,6 +29,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private PaymentServiceFeignClient paymentServiceFeignClient;
+
+    private RestTemplate restTemplate = new RestTemplate();
 
 
     @Override
@@ -85,11 +89,17 @@ public class OrderServiceImpl implements OrderService {
         OrderEntity orderEntity = orderRepository.findById(orderId)
                         .orElseThrow(() -> new RuntimeException("OrderService getOrderById: Order Not Found with Id " + orderId));
 
+        OrderResponse.ProductResponse productResponse = restTemplate.getForObject(
+                "http://localhost:8001/product/" + orderEntity.getProductId(),
+                OrderResponse.ProductResponse.class
+        );
+
         OrderResponse orderResponse = OrderResponse.builder()
                 .orderId(orderEntity.getId())
                 .orderStatus(orderEntity.getOrderStatus())
                 .orderDate(orderEntity.getOrderDate())
                 .totalAmount(orderEntity.getTotalAmount())
+                .productResponse(productResponse)
                 .build();
 
         log.info("End: OrderService getOrderDetailById");

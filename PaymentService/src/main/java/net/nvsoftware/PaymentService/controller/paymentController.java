@@ -1,7 +1,9 @@
 package net.nvsoftware.PaymentService.controller;
 
+import jakarta.ws.rs.PathParam;
 import net.nvsoftware.PaymentService.entity.PaymentEntity;
 import net.nvsoftware.PaymentService.model.PaymentRequest;
+import net.nvsoftware.PaymentService.model.PaymentResponse;
 import net.nvsoftware.PaymentService.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,4 +23,11 @@ public class paymentController {
         long paymentId = paymentService.doPayment(paymentRequest);
         return new ResponseEntity<>(paymentId, HttpStatus.OK);
     }
+
+    @GetMapping("/{orderId}")
+    public ResponseEntity<PaymentResponse> getPaymentDetailById (@PathVariable long orderId) {
+        PaymentResponse paymentResponse = paymentService.getPaymentDetailByOrderId(orderId);
+        return new ResponseEntity<>(paymentResponse, HttpStatus.OK);
+    }
+
 }

@@ -41,4 +41,21 @@ public class ProductServiceImpl implements ProductService {
         log.info("End: ProductService getById " + productResponse);
         return productResponse;
     }
+
+    @Override
+    public void reduceQuantity(long id, long quantity) {
+        log.info("Start: ProductService reduceQuantity with id: " + id + " quantity " + quantity);
+
+        ProductEntity productEntity = productRepository.findById(id)
+                        .orElseThrow(() -> new RuntimeException("ReduceQuantity: Prodcut with id: " + id + " Not Found"));
+
+        if (productEntity.getQuantity() < quantity) {
+            throw new RuntimeException("ReduceQuantity: Product with id " + id + " Not Enough");
+        }
+
+        productEntity.setQuantity(productEntity.getQuantity() - quantity);
+        productRepository.save(productEntity);
+
+        log.info("End: ProductService reduceQuantity with id: " + id + " quantity " + quantity);
+    }
 }

@@ -35,8 +35,12 @@ public class OrderServiceImpl implements OrderService {
         orderRepository.save(orderEntity);
         log.info("Process: OrderService placeOrder, save OrderEntity with orderId: " + orderEntity.getId());
 
-        // TODO: 2. call ProductService to check the product quantity, if OK, reduce it, or throw not enough quantity
-        // TODO: 3. PaymentService to charge, if success, mark order status PAID, or status Cancelled
+        // TODO: 2. call ProductService to check the product quantity, if OK, reduce it, or throw not enough quantity (Done in ProductService)
+
+        // TODO: 3. call PaymentService to charge, if success, mark order status PAID, or status Cancelled (Call request across different micro services 1.Restful API 2.RPC Eureka)
+
+        
+
         log.info("End: orderService placeOrder");
         return orderEntity.getId();
     }

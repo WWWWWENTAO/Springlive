@@ -1,10 +1,10 @@
-package com.example.OrderSeervice;
+package net.nvsoftware.OrderService;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class OrderSeerviceApplicationTests {
+class OrderServiceApplicationTests {
 
 	@Test
 	void contextLoads() {

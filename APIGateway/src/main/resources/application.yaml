@@ -1,4 +1,4 @@
-Server:
+server:
   port: 8052
 
 spring:
@@ -9,18 +9,50 @@ spring:
   cloud:
     gateway:
       mvc:
-        routes:
-          - id: order-service
-            uri: lb://order-service
-            predicates:
-              - Path=/order/**
-          - id: product-service
-            uri: lb://product-service
-            predicates:
-              - Path=/product/**
-          - id: payment-service
-            uri: lb://payment-service
-            predicates:
-              - Path=/payment/**
+       routes:
+       - id: order-service
+         uri: lb://order-service
+         predicates:
+           - Path=/order/**
+#         filters:
+#           - name: RequestRateLimiter
+#             args:
+#              redis-rate-limiter.replenishRate: 1
+#              redis-rate-limiter.burstCapacity: 1
+#          - name: CircuitBreaker
+#            args:
+#              name: order-service
+#              fallbackuri: forward:/orderServiceFallback
 
-#lb == load balancer
+
+       - id: product-service
+         uri: lb://product-service
+         predicates:
+           - Path=/product/**
+
+#         filters:
+#          - name: RequestRateLimiter
+#             args:
+#               redis-rate-limiter.replenishRate: 1
+#               redis-rate-limiter.burstCapacity: 1
+#        filters:
+#          - name: CircuitBreaker
+#            args:
+#             name: product-service
+#              fallbackuri: forward:/productServiceFallback
+
+
+       - id: payment-service
+         uri: lb://payment-service
+         predicates:
+           - Path=/payment/**
+#         filters:
+#           - name: RequestRateLimiter
+#             args:
+#               redis-rate-limiter.replenishRate: 1
+#               redis-rate-limiter.burstCapacity: 1
+#        filters:
+#          - name: CircuitBreaker
+#            args:
+#              name: payment-service
+#              fallbackuri: forward:/paymentServiceFallback

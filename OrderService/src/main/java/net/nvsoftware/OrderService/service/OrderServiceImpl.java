@@ -30,7 +30,8 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private PaymentServiceFeignClient paymentServiceFeignClient;
 
-    private RestTemplate restTemplate = new RestTemplate();
+    @Autowired
+    private RestTemplate restTemplate; // Rest Api Url call ->
 
 
     @Override

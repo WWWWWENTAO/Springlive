@@ -17,8 +17,8 @@ spring:
 #         filters:
 #           - name: RequestRateLimiter
 #             args:
-#              redis-rate-limiter.replenishRate: 1
-#              redis-rate-limiter.burstCapacity: 1
+#              redis-rate-limiter.replenishRate: 10
+#              redis-rate-limiter.burstCapacity: 10
 #          - name: CircuitBreaker
 #            args:
 #              name: order-service
@@ -56,3 +56,11 @@ spring:
 #            args:
 #              name: payment-service
 #              fallbackuri: forward:/paymentServiceFallback
+
+okta:
+  oauth2:
+    issuer: https://dev-94014640.okta.com/oauth2/default
+    audience: api://default
+    client-id: 0oah3gbrci2NZwN265d7
+    client-secret: KbGniS2trQh_kX_0hwrfdwPI3-DmQeF3fw6WYPfsJzw2FWcUctCXsWMsakm99hYD
+    scopes: openid, profile, email, offline_access

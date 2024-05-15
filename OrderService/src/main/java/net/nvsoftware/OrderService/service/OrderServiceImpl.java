@@ -34,7 +34,7 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public long placeOrder(OrderRequest orderRequest) {  // TODO: Transaction
+    public long placeOrder(OrderRequest orderRequest) { // TODO: Transaction
         log.info("Start: OrderService placeOrder");
         // TODO: 1. use orderService create OrderEntity with status Created, save to DB
 
